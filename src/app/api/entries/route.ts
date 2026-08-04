@@ -70,19 +70,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ entry }, { status: 201 });
   } catch (err: unknown) {
-    const isUniqueViolation =
-      typeof err === "object" &&
-      err !== null &&
-      "code" in err &&
-      (err as { code?: string }).code === "23505";
-
-    if (isUniqueViolation) {
-      return NextResponse.json(
-        { error: "That date was just taken by someone else. Please pick another." },
-        { status: 409 }
-      );
-    }
-
     console.error(err);
     return NextResponse.json(
       { error: "Failed to save entry" },

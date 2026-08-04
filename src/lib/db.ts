@@ -23,7 +23,7 @@ export async function ensureSchema() {
     CREATE TABLE IF NOT EXISTS entries (
       id SERIAL PRIMARY KEY,
       name TEXT NOT NULL,
-      guess_date DATE NOT NULL UNIQUE,
+      guess_date DATE NOT NULL,
       eye_color TEXT NOT NULL,
       hair_color TEXT NOT NULL,
       weight_lbs INTEGER NOT NULL,
@@ -31,6 +31,11 @@ export async function ensureSchema() {
       venmo_confirmed BOOLEAN NOT NULL DEFAULT FALSE,
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
+  `);
+  // Older deployments may have created guess_date as UNIQUE — multiple
+  // people are now allowed to pick the same date, so drop that constraint.
+  await pool.query(`
+    ALTER TABLE entries DROP CONSTRAINT IF EXISTS entries_guess_date_key;
   `);
 }
 

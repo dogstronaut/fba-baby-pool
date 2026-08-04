@@ -40,13 +40,17 @@ export default function PoolClient() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-10">
       <div className="text-center">
-        <h1 className="text-3xl font-extrabold text-slate-800">
+        <p className="mb-1 text-xs font-bold uppercase tracking-widest text-[#c99b3d]">
+          {CLASS_NAME}
+        </p>
+        <h1 className="font-serif text-3xl font-extrabold text-[#12233f]">
           Guess the Baby&apos;s Birthday
         </h1>
-        <p className="mt-2 text-slate-600">
-          Pick an open date, guess the eye color, hair color, and weight.
-          Winner takes home <strong>${WINNER_PRIZE}</strong> — the rest goes
-          to the {CLASS_NAME} budget.
+        <p className="mt-2 text-[#12233f]/70">
+          Pick a date, guess the eye color, hair color, and weight. More than
+          one person can pick the same date — winner takes home{" "}
+          <strong>${WINNER_PRIZE}</strong>, the rest goes to the class
+          budget.
         </p>
       </div>
 
@@ -78,12 +82,12 @@ export default function PoolClient() {
       />
 
       <div>
-        <h2 className="mb-3 text-xl font-bold text-slate-800">
+        <h2 className="mb-3 font-serif text-xl font-bold text-[#12233f]">
           Current Guesses {loading ? "" : `(${entries.length})`}
         </h2>
-        <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div className="overflow-x-auto rounded-2xl border-2 border-[#12233f]/15 bg-[#fffdf7] shadow-md">
           <table className="min-w-full text-sm">
-            <thead className="bg-slate-50 text-left text-slate-500">
+            <thead className="bg-[#12233f] text-left text-[#f2ead6]">
               <tr>
                 <th className="px-4 py-2">Name</th>
                 <th className="px-4 py-2">Date Guess</th>
@@ -94,19 +98,19 @@ export default function PoolClient() {
             </thead>
             <tbody>
               {entries.map((e) => (
-                <tr key={e.id} className="border-t border-slate-100">
-                  <td className="px-4 py-2 font-medium text-slate-800">
+                <tr key={e.id} className="border-t border-[#12233f]/10">
+                  <td className="px-4 py-2 font-medium text-[#12233f]">
                     {e.name}
                   </td>
-                  <td className="px-4 py-2 text-slate-600">
+                  <td className="px-4 py-2 text-[#12233f]/70">
                     {new Date(e.guess_date + "T00:00:00").toLocaleDateString(
                       "en-US",
                       { month: "long", day: "numeric", year: "numeric" }
                     )}
                   </td>
-                  <td className="px-4 py-2 text-slate-600">{e.eye_color}</td>
-                  <td className="px-4 py-2 text-slate-600">{e.hair_color}</td>
-                  <td className="px-4 py-2 text-slate-600">
+                  <td className="px-4 py-2 text-[#12233f]/70">{e.eye_color}</td>
+                  <td className="px-4 py-2 text-[#12233f]/70">{e.hair_color}</td>
+                  <td className="px-4 py-2 text-[#12233f]/70">
                     {e.weight_lbs} lbs {e.weight_oz} oz
                   </td>
                 </tr>
@@ -115,7 +119,7 @@ export default function PoolClient() {
                 <tr>
                   <td
                     colSpan={5}
-                    className="px-4 py-6 text-center text-slate-400"
+                    className="px-4 py-6 text-center text-[#12233f]/40"
                   >
                     No guesses yet — be the first!
                   </td>
