@@ -1,27 +1,160 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf6ec;
-  --foreground: #12233f;
+  --cream: #f6f1e2;
+  --cream-deep: #eee6cf;
+  --navy: #152341;
+  --navy-soft: #2b3b5c;
+  --stamp: #c7521e;
+  --stamp-soft: #e5794a;
+  --vault: #1e6e52;
+  --vault-soft: #dcebe3;
+  --gold: #bd9536;
+  --ink: #1b1b18;
+  --line: rgba(21, 35, 65, 0.16);
+
+  --background: var(--cream);
+  --foreground: var(--ink);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-stamp: var(--stamp);
+  --color-stamp-soft: var(--stamp-soft);
+  --color-vault: var(--vault);
+  --color-vault-soft: var(--vault-soft);
+  --color-gold: var(--gold);
+  --font-sans: var(--font-source-sans);
+  --font-mono: var(--font-plex-mono);
   --font-serif: var(--font-playfair);
 }
 
 body {
-  background-color: #faf6ec;
+  background-color: var(--cream);
   background-image: repeating-linear-gradient(
     to bottom,
-    rgba(18, 35, 63, 0.035) 0px,
-    rgba(18, 35, 63, 0.035) 1px,
+    rgba(21, 35, 65, 0.035) 0px,
+    rgba(21, 35, 65, 0.035) 1px,
     transparent 1px,
     transparent 34px
   );
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-source-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Ledger card: white card with a dashed orange perforation stripe on the left edge */
+.ledger-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(21, 35, 65, 0.06);
+  overflow: hidden;
+}
+
+.ledger-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 6px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--stamp) 0px,
+    var(--stamp) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+/* Exhibit tab: small navy label sticking out of the card's left edge.
+   Must live in a `.relative` wrapper alongside (not inside) `.ledger-card`,
+   since the card itself uses overflow:hidden to clip rounded image corners. */
+.exhibit-tab {
+  position: absolute;
+  top: 1.25rem;
+  left: 0;
+  transform: translateX(-100%);
+  z-index: 1;
+  background: var(--navy);
+  color: var(--cream);
+  font-family: var(--font-plex-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.6rem;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/* Below the breakpoint where sticking a tab out past the left edge would
+   overflow the viewport, dock it as a corner tag on top of the card instead. */
+@media (max-width: 640px) {
+  .exhibit-tab {
+    top: 0;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    border-radius: 4px;
+  }
+}
+
+/* Rubber-stamp badge used in the hero */
+.stamp-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  border-radius: 9999px;
+  border: 3px solid var(--stamp);
+  color: var(--stamp);
+  transform: rotate(-8deg);
+  font-family: var(--font-plex-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mono-eyebrow {
+  font-family: var(--font-plex-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--stamp);
+}
+
+.btn-ledger {
+  font-family: var(--font-plex-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  background: var(--navy);
+  color: var(--cream);
+  transition: background-color 0.2s ease;
+}
+
+.btn-ledger:hover {
+  background: var(--stamp);
+}
+
+.btn-pill {
+  font-family: var(--font-plex-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  background: var(--stamp);
+  color: var(--cream);
+  transition: background-color 0.2s ease;
+}
+
+.btn-pill:hover {
+  background: var(--stamp-soft);
 }

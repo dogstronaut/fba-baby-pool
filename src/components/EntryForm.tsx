@@ -73,26 +73,26 @@ export default function EntryForm({
   }
 
   return (
-    <form
-      id="entry-form"
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-4 rounded-2xl border-2 border-[#12233f]/15 bg-[#fffdf7] p-5 shadow-md sm:p-6"
-    >
+    <div className="relative">
+      <span className="exhibit-tab">Exhibit D</span>
+      <form
+        id="entry-form"
+        onSubmit={handleSubmit}
+        className="ledger-card flex flex-col gap-4 p-5 pl-8 sm:p-6 sm:pl-10"
+      >
       <div>
-        <p className="text-xs font-bold uppercase tracking-widest text-[#c99b3d]">
-          Ledger Entry
-        </p>
-        <h3 className="font-serif text-xl font-bold text-[#12233f]">
+        <p className="mono-eyebrow">Ledger Entry</p>
+        <h3 className="font-serif text-xl font-bold italic text-[var(--navy)]">
           Lock In Your Guess
         </h3>
-        <p className="text-sm text-[#12233f]/60">
+        <p className="text-sm text-[var(--navy)]/60">
           {selectedDate
             ? `Selected date: ${selectedDate} — multiple people may guess the same date.`
             : "Select a date on the calendar above to get started."}
         </p>
       </div>
 
-      <div className="rounded-xl border-2 border-[#c99b3d] bg-[#f7ecc9] p-3 text-sm text-[#3a2e0f]">
+      <div className="rounded border-2 border-[var(--gold)] bg-[var(--cream-deep)] p-3 text-sm text-[var(--navy)]">
         <strong>Step 1:</strong> Venmo{" "}
         <a
           href={venmoLink}
@@ -106,36 +106,36 @@ export default function EntryForm({
         entries aren&apos;t locked in until the box below is checked and payment is sent.
       </div>
 
-      <label className="flex flex-col gap-1 text-sm font-medium text-[#12233f]">
+      <label className="flex flex-col gap-1 text-sm font-medium text-[var(--navy)]">
         Your Name
         <input
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="First & Last"
-          className="rounded-lg border border-[#12233f]/25 px-3 py-2 text-[#12233f] focus:border-[#c99b3d] focus:outline-none"
+          className="rounded border border-[var(--navy)]/25 px-3 py-2 text-[var(--navy)] focus:border-[var(--stamp)] focus:outline-none"
         />
       </label>
 
       <div className="grid grid-cols-2 gap-3">
-        <label className="flex flex-col gap-1 text-sm font-medium text-[#12233f]">
+        <label className="flex flex-col gap-1 text-sm font-medium text-[var(--navy)]">
           Eye Color
           <select
             value={eyeColor}
             onChange={(e) => setEyeColor(e.target.value)}
-            className="rounded-lg border border-[#12233f]/25 px-3 py-2 text-[#12233f]"
+            className="rounded border border-[var(--navy)]/25 px-3 py-2 text-[var(--navy)]"
           >
             {EYE_COLORS.map((c) => (
               <option key={c}>{c}</option>
             ))}
           </select>
         </label>
-        <label className="flex flex-col gap-1 text-sm font-medium text-[#12233f]">
+        <label className="flex flex-col gap-1 text-sm font-medium text-[var(--navy)]">
           Hair Color
           <select
             value={hairColor}
             onChange={(e) => setHairColor(e.target.value)}
-            className="rounded-lg border border-[#12233f]/25 px-3 py-2 text-[#12233f]"
+            className="rounded border border-[var(--navy)]/25 px-3 py-2 text-[var(--navy)]"
           >
             {HAIR_COLORS.map((c) => (
               <option key={c}>{c}</option>
@@ -145,14 +145,16 @@ export default function EntryForm({
       </div>
 
       <div>
-        <span className="text-sm font-medium text-[#12233f]">Birth Weight Guess</span>
+        <span className="text-sm font-medium text-[var(--navy)]">
+          Birth Weight Guess
+        </span>
         <div className="mt-1 grid grid-cols-2 gap-3">
-          <label className="flex flex-col gap-1 text-sm text-[#12233f]/70">
+          <label className="flex flex-col gap-1 text-sm text-[var(--navy)]/70">
             Pounds
             <select
               value={weightLbs}
               onChange={(e) => setWeightLbs(Number(e.target.value))}
-              className="rounded-lg border border-[#12233f]/25 px-3 py-2 text-[#12233f]"
+              className="rounded border border-[var(--navy)]/25 px-3 py-2 text-[var(--navy)]"
             >
               {WEIGHT_LBS_OPTIONS.map((n) => (
                 <option key={n} value={n}>
@@ -161,12 +163,12 @@ export default function EntryForm({
               ))}
             </select>
           </label>
-          <label className="flex flex-col gap-1 text-sm text-[#12233f]/70">
+          <label className="flex flex-col gap-1 text-sm text-[var(--navy)]/70">
             Ounces
             <select
               value={weightOz}
               onChange={(e) => setWeightOz(Number(e.target.value))}
-              className="rounded-lg border border-[#12233f]/25 px-3 py-2 text-[#12233f]"
+              className="rounded border border-[var(--navy)]/25 px-3 py-2 text-[var(--navy)]"
             >
               {WEIGHT_OZ_OPTIONS.map((n) => (
                 <option key={n} value={n}>
@@ -178,7 +180,7 @@ export default function EntryForm({
         </div>
       </div>
 
-      <label className="flex items-start gap-2 rounded-lg border border-[#12233f]/25 p-3 text-sm text-[#12233f]">
+      <label className="flex items-start gap-2 rounded border border-[var(--navy)]/25 p-3 text-sm text-[var(--navy)]">
         <input
           type="checkbox"
           required
@@ -194,7 +196,7 @@ export default function EntryForm({
       </label>
 
       {error && (
-        <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
+        <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-700">
           {error}
         </p>
       )}
@@ -202,10 +204,11 @@ export default function EntryForm({
       <button
         type="submit"
         disabled={submitting || !selectedDate}
-        className="rounded-lg bg-[#12233f] px-4 py-2.5 font-semibold text-[#f2ead6] transition hover:bg-[#1c3358] disabled:cursor-not-allowed disabled:bg-[#12233f]/30"
+        className="btn-ledger rounded px-4 py-2.5 disabled:cursor-not-allowed disabled:bg-[var(--navy)]/30"
       >
         {submitting ? "Locking in..." : "Lock In My Guess"}
       </button>
-    </form>
+      </form>
+    </div>
   );
 }

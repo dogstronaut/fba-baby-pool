@@ -3,25 +3,26 @@ import { CLASS_NAME } from "@/lib/constants";
 
 export default function NavBar() {
   return (
-    <header className="border-b-2 border-[#c99b3d] bg-[#12233f]">
+    <header className="sticky top-0 z-10 border-b border-[var(--navy)]/20 bg-[var(--navy)]">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <Link
-          href="/"
-          className="font-serif text-lg font-bold text-[#f2ead6]"
-        >
-          Camille &amp; Scott&apos;s Baby Pool
-          <span className="ml-2 hidden text-xs font-normal text-[#c99b3d] sm:inline">
-            {CLASS_NAME}
+        <Link href="/" className="flex items-center gap-3">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[var(--gold)] font-mono text-xs font-bold text-[var(--cream)]">
+            C&amp;S
+          </span>
+          <span className="flex flex-col leading-tight">
+            <span className="font-serif text-base font-bold italic text-[var(--cream)]">
+              Camille &amp; Scott
+            </span>
+            <span className="hidden font-mono text-[10px] uppercase tracking-widest text-[var(--gold)] sm:inline">
+              {CLASS_NAME}
+            </span>
           </span>
         </Link>
-        <nav className="flex items-center gap-4 text-sm font-semibold text-[#f2ead6]/80">
-          <Link href="/" className="hover:text-[#c99b3d]">
+        <nav className="flex items-center gap-5 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--cream)]/80">
+          <Link href="/" className="hover:text-[var(--gold)]">
             Story
           </Link>
-          <Link
-            href="/pool"
-            className="rounded-lg border border-[#c99b3d] px-3 py-1.5 text-[#f2ead6] hover:bg-[#c99b3d] hover:text-[#12233f]"
-          >
+          <Link href="/pool" className="btn-pill rounded-full px-4 py-2">
             Enter the Pool
           </Link>
         </nav>

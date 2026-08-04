@@ -55,18 +55,23 @@ export default function Calendar({
   ];
 
   return (
-    <div className="rounded-2xl border-2 border-[#12233f]/15 bg-[#fffdf7] p-4 shadow-md">
-      <h3 className="mb-3 text-center font-serif text-lg font-bold tracking-wide text-[#12233f]">
+    <div className="overflow-hidden rounded-md border border-[var(--line)] bg-white shadow-md">
+      <div className="bg-[var(--navy)] px-4 py-2 text-center font-mono text-xs font-bold uppercase tracking-widest text-[var(--cream)]">
         {MONTH_NAMES[month]} {year}
-      </h3>
-      <div className="mb-1 grid grid-cols-7 gap-1 text-center text-xs font-semibold text-[#12233f]/40">
+      </div>
+      <div className="grid grid-cols-7 gap-px bg-[var(--line)] px-px pt-px">
         {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
-          <div key={i}>{d}</div>
+          <div
+            key={i}
+            className="bg-[var(--navy)] py-1 text-center font-mono text-[10px] font-semibold uppercase text-[var(--cream)]/70"
+          >
+            {d}
+          </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7 gap-px bg-[var(--line)] p-px">
         {cells.map((day, idx) => {
-          if (day === null) return <div key={idx} />;
+          if (day === null) return <div key={idx} className="bg-[var(--cream)]" />;
 
           const dateKey = toDateKey(year, month, day);
           const names = namesByDate.get(dateKey) ?? [];
@@ -77,14 +82,13 @@ export default function Calendar({
             day === DUE_DATE.getDate();
 
           const base =
-            "relative aspect-square rounded-lg text-sm flex flex-col items-center justify-center gap-0.5 transition cursor-pointer border";
+            "relative aspect-square text-sm flex flex-col items-center justify-center gap-0.5 transition cursor-pointer font-mono border";
 
-          let style =
-            "border-[#12233f]/15 bg-white text-[#12233f] hover:bg-[#c99b3d]/10 hover:border-[#c99b3d]";
+          let style = "border-transparent bg-white text-[var(--navy)] hover:bg-[var(--cream-deep)]";
           if (isSelected) {
-            style = "border-[#c99b3d] bg-[#12233f] text-[#f2ead6] font-bold";
+            style = "border-transparent bg-[var(--stamp)] text-white font-bold";
           } else if (isDueDate) {
-            style = "border-[#c99b3d] bg-[#f7ecc9] text-[#12233f] hover:bg-[#f0dfa0]";
+            style = "border-[var(--gold)] bg-[var(--vault-soft)] text-[var(--navy)] hover:bg-[var(--vault-soft)]/70";
           }
 
           return (
@@ -97,16 +101,16 @@ export default function Calendar({
             >
               <span>{day}</span>
               {isDueDate && !isSelected && (
-                <span className="text-[8px] font-semibold text-[#8a6a1f]">
-                  DUE DATE
+                <span className="text-[8px] font-semibold uppercase tracking-widest text-[var(--gold)]">
+                  Due
                 </span>
               )}
               {names.length > 0 && (
                 <span
                   className={`absolute -top-1.5 -right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[9px] font-bold ${
                     isSelected
-                      ? "bg-[#c99b3d] text-[#12233f]"
-                      : "bg-[#12233f] text-[#f2ead6]"
+                      ? "bg-[var(--navy)] text-[var(--cream)]"
+                      : "bg-[var(--navy)] text-[var(--cream)]"
                   }`}
                 >
                   {names.length}
