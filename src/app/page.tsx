@@ -18,7 +18,7 @@ export default function Home() {
   const dueMonthAbbr = DUE_DATE.toLocaleDateString("en-US", {
     month: "short",
   }).toUpperCase();
-  const venmoLink = buildVenmoPayLink("baby pool");
+  const venmoLink = buildVenmoPayLink("Baby Pool");
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-12 px-4 py-12">
@@ -135,7 +135,7 @@ export default function Home() {
             >
               {VENMO_HANDLE}
             </a>{" "}
-            (write &ldquo;baby pool&rdquo; in the note) — winner takes home $
+            (note: &ldquo;Baby Pool&rdquo;) — winner takes home $
             {WINNER_PRIZE}, the rest goes to the class fund.
           </p>
           <Link

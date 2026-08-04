@@ -11,8 +11,10 @@ export const WINNER_PRIZE = 50;
 export const VENMO_HANDLE = "@ashley-carroll-101";
 export const CLASS_NAME = "FBA Class of 2027";
 
-// Venmo's deep-link format: recipients must be passed as a query param (not
-// in the path) for the link to hand off into the Venmo app on mobile.
+// Venmo's "https://venmo.com/..." universal link only hands off to the app
+// the first time a browser sees it — after that, iOS/Android Safari treat
+// repeat taps as a normal web visit. The venmo:// custom scheme always
+// opens the app directly, so use that instead.
 export function buildVenmoPayLink(note: string): string {
   const params = new URLSearchParams({
     txn: "pay",
@@ -20,7 +22,7 @@ export function buildVenmoPayLink(note: string): string {
     amount: String(BUY_IN_AMOUNT),
     note,
   });
-  return `https://venmo.com/?${params.toString()}`;
+  return `venmo://paycharge?${params.toString()}`;
 }
 
 export const EYE_COLORS: string[] = [

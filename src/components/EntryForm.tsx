@@ -27,7 +27,7 @@ export default function EntryForm({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const venmoLink = buildVenmoPayLink("baby pool");
+  const venmoLink = buildVenmoPayLink("Baby Pool");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -96,7 +96,7 @@ export default function EntryForm({
         <a href={venmoLink} className="font-bold underline">
           {VENMO_HANDLE}
         </a>{" "}
-        ${BUY_IN_AMOUNT} to enter (note: &ldquo;baby pool&rdquo;).{" "}
+        ${BUY_IN_AMOUNT} to enter (note: &ldquo;Baby Pool&rdquo;).{" "}
         <strong>You must send payment before submitting</strong> —
         entries aren&apos;t locked in until the box below is checked and payment is sent.
       </div>
