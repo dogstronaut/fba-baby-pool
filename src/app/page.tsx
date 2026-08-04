@@ -49,40 +49,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex items-center justify-center gap-6 sm:gap-10">
-        <div className="flex flex-col items-center gap-2">
-          <div className="h-32 w-32 overflow-hidden rounded-full border-4 border-[var(--gold)] shadow-md sm:h-40 sm:w-40">
-            <Image
-              src="/images/camille.jpg"
-              alt="Camille"
-              width={160}
-              height={160}
-              className="h-full w-full object-cover"
-              priority
-            />
-          </div>
-          <span className="font-serif font-bold italic text-[var(--navy)]">
-            Camille
-          </span>
-        </div>
-        <span className="text-3xl">💍</span>
-        <div className="flex flex-col items-center gap-2">
-          <div className="h-32 w-32 overflow-hidden rounded-full border-4 border-[var(--gold)] shadow-md sm:h-40 sm:w-40">
-            <Image
-              src="/images/scott.jpg"
-              alt="Scott"
-              width={160}
-              height={160}
-              className="h-full w-full object-cover"
-              priority
-            />
-          </div>
-          <span className="font-serif font-bold italic text-[var(--navy)]">
-            Scott
-          </span>
-        </div>
-      </section>
-
       <section className="relative">
         <span className="exhibit-tab">Exhibit A</span>
         <div className="ledger-card">
