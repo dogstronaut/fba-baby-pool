@@ -19,9 +19,6 @@ export default function NavBar() {
           </span>
         </Link>
         <nav className="flex items-center gap-5 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--cream)]/80">
-          <Link href="/" className="hover:text-[var(--gold)]">
-            Story
-          </Link>
           <Link href="/pool" className="btn-pill rounded-full px-4 py-2">
             Enter the Pool
           </Link>

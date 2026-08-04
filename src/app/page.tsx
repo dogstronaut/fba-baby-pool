@@ -25,10 +25,10 @@ export default function Home() {
           &mdash; {CLASS_NAME} Presents &mdash;
         </p>
         <h1 className="font-serif text-4xl font-extrabold italic text-[var(--navy)] sm:text-5xl">
-          A Camille &amp; Scott Baby Pool
+          Camille &amp; Scott Baby Pool
         </h1>
         <p className="mt-3 text-lg text-[var(--navy)]/70">
-          Help us guess when (and what) this baby will be!
+          Help us guess when this baby will be!
         </p>
 
         <Link
@@ -85,10 +85,9 @@ export default function Home() {
           </p>
           <p>
             What followed wasn&apos;t exactly a whirlwind romance — it was
-            late nights in the library, color-coded flashcards, and endless
-            practice questions, as the two of them teamed up to tackle the
-            single hardest exam administered anywhere in the state of Florida
-            banking curriculum.
+            late nights running AI-generated sample tests, as the two of them
+            teamed up to tackle the single hardest exam administered anywhere
+            in the state of Florida banking curriculum.
           </p>
         </div>
 
@@ -119,7 +118,7 @@ export default function Home() {
       </section>
 
       <section className="relative">
-        <span className="exhibit-tab">Exhibit C</span>
+        <span className="exhibit-tab">Exhibit B</span>
         <div className="ledger-card">
         <div className="p-6 pl-8 text-center sm:p-8 sm:pl-10">
           <h2 className="font-serif text-xl font-bold italic text-[var(--navy)]">
