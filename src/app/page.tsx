@@ -1,69 +1,118 @@
 import Image from "next/image";
+import Link from "next/link";
+import {
+  BUY_IN_AMOUNT,
+  CLASS_NAME,
+  DUE_DATE,
+  VENMO_HANDLE,
+  WINNER_PRIZE,
+} from "@/lib/constants";
 
 export default function Home() {
+  const dueDateStr = DUE_DATE.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="mx-auto flex max-w-3xl flex-col gap-10 px-4 py-12">
+      <section className="text-center">
+        <p className="mb-2 text-sm font-bold uppercase tracking-wide text-emerald-600">
+          {CLASS_NAME} Presents
+        </p>
+        <h1 className="text-4xl font-extrabold text-slate-800 sm:text-5xl">
+          A Camille &amp; Scott Baby Pool
+        </h1>
+        <p className="mt-3 text-lg text-slate-600">
+          Due {dueDateStr} — help us guess when (and what) this baby will be!
+        </p>
+      </section>
+
+      <section className="flex items-center justify-center gap-6 sm:gap-10">
+        <div className="flex flex-col items-center gap-2">
+          <div className="h-32 w-32 overflow-hidden rounded-full border-4 border-white shadow-md sm:h-40 sm:w-40">
+            <Image
+              src="/images/camille.jpg"
+              alt="Camille"
+              width={160}
+              height={160}
+              className="h-full w-full object-cover"
+              priority
+            />
+          </div>
+          <span className="font-bold text-slate-700">Camille</span>
+        </div>
+        <span className="text-3xl">💍</span>
+        <div className="flex flex-col items-center gap-2">
+          <div className="h-32 w-32 overflow-hidden rounded-full border-4 border-white shadow-md sm:h-40 sm:w-40">
+            <Image
+              src="/images/scott.jpg"
+              alt="Scott"
+              width={160}
+              height={160}
+              className="h-full w-full object-cover"
+              priority
+            />
+          </div>
+          <span className="font-bold text-slate-700">Scott</span>
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <h2 className="mb-4 text-2xl font-bold text-slate-800">
+          How It All Started
+        </h2>
+        <div className="flex flex-col gap-4 text-slate-600">
+          <p>
+            Every great banking career starts with a solid foundation — and
+            apparently, so does every great love story. Camille and Scott met
+            during their first year at the Florida School of Banking, in the
+            most on-brand way two future bankers possibly could: a karaoke
+            night at the University of Florida that was supposed to be a
+            quick study break.
+          </p>
+          <p>
+            Scott grabbed the mic first. Camille, never one to be outdone,
+            followed with a performance that — depending on who you ask —
+            either stole the show or cleared the room. Either way, it was
+            enough to spark a conversation that lasted well past last call.
+          </p>
+          <p>
+            What followed wasn&apos;t exactly a whirlwind romance — it was
+            late nights in the library, color-coded flashcards, and endless
+            practice questions, as the two of them teamed up to tackle the
+            single hardest exam administered anywhere in the state of Florida
+            banking curriculum. Somewhere between reconciling ledgers and
+            reciting regulations, quizzing each other turned into something
+            more. Turns out nothing says &ldquo;soulmate&rdquo; quite like
+            surviving a brutal case study session together at 11pm on a
+            Tuesday.
+          </p>
+          <p>
+            They both passed. They both fell in love. And now, the {CLASS_NAME}{" "}
+            family is getting ready to welcome its newest (and smallest)
+            member — due <strong>{dueDateStr}</strong>.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
+
+      <section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
+        <h2 className="text-xl font-bold text-slate-800">
+          Think you know this kid already?
+        </h2>
+        <p className="mt-2 text-slate-600">
+          Pick a due date, guess the eye color, hair color, and weight. Buy-in
+          is ${BUY_IN_AMOUNT} via Venmo to <strong>{VENMO_HANDLE}</strong> —
+          winner takes home ${WINNER_PRIZE}, the rest goes to the class fund.
+        </p>
+        <Link
+          href="/pool"
+          className="mt-4 inline-block rounded-lg bg-emerald-600 px-6 py-3 font-semibold text-white transition hover:bg-emerald-700"
+        >
+          Enter the Pool
+        </Link>
+      </section>
     </div>
   );
 }
