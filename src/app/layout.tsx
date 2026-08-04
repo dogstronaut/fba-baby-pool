@@ -21,9 +21,37 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
+// Vercel injects this at build time with the actual production domain, so
+// the Open Graph image below resolves to a real absolute URL without
+// hardcoding a domain that could drift out of sync with the real deployment.
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Camille & Scott's Baby Pool",
   description: "FBA Class of 2027 baby pool for Camille & Scott's little one.",
+  openGraph: {
+    title: "Camille & Scott's Baby Pool",
+    description:
+      "FBA Class of 2027 baby pool for Camille & Scott's little one.",
+    images: [
+      {
+        url: "/images/og-preview.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Camille and Scott singing karaoke, cartoon illustration",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Camille & Scott's Baby Pool",
+    description:
+      "FBA Class of 2027 baby pool for Camille & Scott's little one.",
+    images: ["/images/og-preview.jpg"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
