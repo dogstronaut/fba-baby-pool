@@ -1,4 +1,11 @@
-import { Pool } from "pg";
+import { Pool, types } from "pg";
+
+// By default node-postgres parses SQL `DATE` columns (OID 1082) into JS
+// Date objects, but every guess_date/actual_date column here is treated as
+// a plain "YYYY-MM-DD" string throughout this app. Left unpatched, that
+// auto-conversion produces "Invalid Date" once client code appends a time
+// suffix (e.g. `guess_date + "T00:00:00"`) to what it assumes is a string.
+types.setTypeParser(types.builtins.DATE, (value: string) => value);
 
 declare global {
   // eslint-disable-next-line no-var
