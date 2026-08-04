@@ -6,6 +6,7 @@ import {
   DUE_DATE,
   VENMO_HANDLE,
   WINNER_PRIZE,
+  buildVenmoPayLink,
 } from "@/lib/constants";
 
 export default function Home() {
@@ -17,9 +18,7 @@ export default function Home() {
   const dueMonthAbbr = DUE_DATE.toLocaleDateString("en-US", {
     month: "short",
   }).toUpperCase();
-  const venmoLink = `https://venmo.com/${VENMO_HANDLE.replace("@", "")}?txn=pay&amount=${BUY_IN_AMOUNT}&note=${encodeURIComponent(
-    "baby pool"
-  )}`;
+  const venmoLink = buildVenmoPayLink("baby pool");
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-12 px-4 py-12">
@@ -132,8 +131,6 @@ export default function Home() {
             Buy-in is ${BUY_IN_AMOUNT} via Venmo to{" "}
             <a
               href={venmoLink}
-              target="_blank"
-              rel="noopener noreferrer"
               className="whitespace-nowrap font-bold underline"
             >
               {VENMO_HANDLE}

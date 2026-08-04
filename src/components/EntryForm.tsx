@@ -8,6 +8,7 @@ import {
   VENMO_HANDLE,
   WEIGHT_LBS_OPTIONS,
   WEIGHT_OZ_OPTIONS,
+  buildVenmoPayLink,
 } from "@/lib/constants";
 
 export default function EntryForm({
@@ -26,9 +27,7 @@ export default function EntryForm({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const venmoLink = `https://venmo.com/${VENMO_HANDLE.replace("@", "")}?txn=pay&amount=${BUY_IN_AMOUNT}&note=${encodeURIComponent(
-    "FBA Baby Pool - Camille & Scott"
-  )}`;
+  const venmoLink = buildVenmoPayLink("baby pool");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -94,15 +93,11 @@ export default function EntryForm({
 
       <div className="rounded border-2 border-[var(--gold)] bg-[var(--cream-deep)] p-3 text-sm text-[var(--navy)]">
         <strong>Step 1:</strong> Venmo{" "}
-        <a
-          href={venmoLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-bold underline"
-        >
+        <a href={venmoLink} className="font-bold underline">
           {VENMO_HANDLE}
         </a>{" "}
-        ${BUY_IN_AMOUNT} to enter. <strong>You must send payment before submitting</strong> —
+        ${BUY_IN_AMOUNT} to enter (note: &ldquo;baby pool&rdquo;).{" "}
+        <strong>You must send payment before submitting</strong> —
         entries aren&apos;t locked in until the box below is checked and payment is sent.
       </div>
 
