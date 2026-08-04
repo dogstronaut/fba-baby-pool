@@ -25,8 +25,13 @@ const RULES = [
   },
   {
     label: "03",
+    title: "How Winning Works",
+    body: `Whoever guesses the exact birth date wins outright. If more than one person nails the date, the tiebreaker goes to whoever matched the most attributes (eye color, hair color) — and if it's still tied, closest birth weight wins.`,
+  },
+  {
+    label: "04",
     title: "Collect the Prize",
-    body: `Closest guess wins $${WINNER_PRIZE} once baby arrives. The rest goes to the ${CLASS_NAME} fund.`,
+    body: `The winner takes home $${WINNER_PRIZE} once baby arrives. The rest goes to the ${CLASS_NAME} fund.`,
   },
 ];
 
@@ -86,30 +91,10 @@ export default function PoolClient() {
         <span className="exhibit-tab">Exhibit B</span>
         <div className="ledger-card">
         <div className="p-6 pl-8 sm:p-8 sm:pl-10">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {CALENDAR_MONTHS.map(({ year, month }) => (
-              <Calendar
-                key={`${year}-${month}`}
-                year={year}
-                month={month}
-                entries={entries}
-                selectedDate={selectedDate}
-                onSelect={setSelectedDate}
-              />
-            ))}
-          </div>
-        </div>
-        </div>
-      </section>
-
-      <section className="relative">
-        <span className="exhibit-tab">Exhibit C</span>
-        <div className="ledger-card">
-        <div className="p-6 pl-8 sm:p-8 sm:pl-10">
           <h2 className="mb-4 font-serif text-xl font-bold italic text-[var(--navy)]">
             The Rules
           </h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {RULES.map((rule) => (
               <div key={rule.label}>
                 <span className="font-mono text-sm font-bold text-[var(--gold)]">
@@ -122,6 +107,26 @@ export default function PoolClient() {
                   {rule.body}
                 </p>
               </div>
+            ))}
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <section className="relative">
+        <span className="exhibit-tab">Exhibit C</span>
+        <div className="ledger-card">
+        <div className="p-6 pl-8 sm:p-8 sm:pl-10">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {CALENDAR_MONTHS.map(({ year, month }) => (
+              <Calendar
+                key={`${year}-${month}`}
+                year={year}
+                month={month}
+                entries={entries}
+                selectedDate={selectedDate}
+                onSelect={setSelectedDate}
+              />
             ))}
           </div>
         </div>

@@ -87,3 +87,66 @@ export async function createEntry(input: {
   );
   return result.rows[0];
 }
+
+export type Answer = {
+  id: number;
+  actual_date: string;
+  weight_lbs: number;
+  weight_oz: number;
+  eye_color: string;
+  hair_color: string;
+  created_at: string;
+};
+
+export async function ensureAnswerSchema() {
+  const pool = getPool();
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS answer (
+      id INTEGER PRIMARY KEY DEFAULT 1,
+      actual_date DATE NOT NULL,
+      weight_lbs INTEGER NOT NULL,
+      weight_oz INTEGER NOT NULL,
+      eye_color TEXT NOT NULL,
+      hair_color TEXT NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      CONSTRAINT answer_singleton CHECK (id = 1)
+    );
+  `);
+}
+
+export async function getAnswer(): Promise<Answer | null> {
+  await ensureAnswerSchema();
+  const pool = getPool();
+  const result = await pool.query<Answer>("SELECT * FROM answer WHERE id = 1");
+  return result.rows[0] ?? null;
+}
+
+export async function saveAnswer(input: {
+  actualDate: string;
+  weightLbs: number;
+  weightOz: number;
+  eyeColor: string;
+  hairColor: string;
+}): Promise<Answer> {
+  await ensureAnswerSchema();
+  const pool = getPool();
+  const result = await pool.query<Answer>(
+    `INSERT INTO answer (id, actual_date, weight_lbs, weight_oz, eye_color, hair_color)
+     VALUES (1, $1, $2, $3, $4, $5)
+     ON CONFLICT (id) DO UPDATE SET
+       actual_date = EXCLUDED.actual_date,
+       weight_lbs = EXCLUDED.weight_lbs,
+       weight_oz = EXCLUDED.weight_oz,
+       eye_color = EXCLUDED.eye_color,
+       hair_color = EXCLUDED.hair_color
+     RETURNING *`,
+    [
+      input.actualDate,
+      input.weightLbs,
+      input.weightOz,
+      input.eyeColor,
+      input.hairColor,
+    ]
+  );
+  return result.rows[0];
+}
