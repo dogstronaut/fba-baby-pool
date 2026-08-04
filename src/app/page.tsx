@@ -17,6 +17,9 @@ export default function Home() {
   const dueMonthAbbr = DUE_DATE.toLocaleDateString("en-US", {
     month: "short",
   }).toUpperCase();
+  const venmoLink = `https://venmo.com/${VENMO_HANDLE.replace("@", "")}?txn=pay&amount=${BUY_IN_AMOUNT}&note=${encodeURIComponent(
+    "baby pool"
+  )}`;
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-12 px-4 py-12">
@@ -127,7 +130,15 @@ export default function Home() {
           <p className="mt-2 text-[var(--navy)]/75">
             Pick a due date, guess the eye color, hair color, and weight.
             Buy-in is ${BUY_IN_AMOUNT} via Venmo to{" "}
-            <strong>{VENMO_HANDLE}</strong> — winner takes home $
+            <a
+              href={venmoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whitespace-nowrap font-bold underline"
+            >
+              {VENMO_HANDLE}
+            </a>{" "}
+            (write &ldquo;baby pool&rdquo; in the note) — winner takes home $
             {WINNER_PRIZE}, the rest goes to the class fund.
           </p>
           <Link
